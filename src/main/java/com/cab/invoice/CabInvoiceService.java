@@ -1,6 +1,6 @@
 package com.cab.invoice;
 
-public class CabInvoice {
+public class CabInvoiceService {
 
     public static final double COST_PER_KILOMETER=10;
     public static final double COST_PER_TIME=1;
