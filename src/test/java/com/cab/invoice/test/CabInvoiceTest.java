@@ -1,9 +1,6 @@
 package com.cab.invoice.test;
 
-import com.cab.invoice.CabInvoiceService;
-import com.cab.invoice.CabInvoiceSumary;
-import com.cab.invoice.CabRideType;
-import com.cab.invoice.Ride;
+import com.cab.invoice.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +10,7 @@ public class CabInvoiceTest {
 
     @Before
     public void setUp() throws Exception {
-        cabInvoiceSummary =new CabInvoiceService();
+        cabInvoiceSummary =new CabInvoiceService(new CabInvoiceRepository());
     }
 
     @Test

@@ -4,8 +4,8 @@ public class CabInvoiceService {
 
     private final CabInvoiceRepository cabRepository;
 
-    public CabInvoiceService() {
-        cabRepository = new CabInvoiceRepository();
+    public CabInvoiceService(CabInvoiceRepository cabRepository) {
+        this.cabRepository = cabRepository;
     }
 
     public double calculateFare(double distance, double time, CabRideType type) {
