@@ -8,18 +8,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class CabInvoiceTest {
-    CabInvoiceService cabInvoice;
+    CabInvoiceService cabInvoiceSumary;
 
     @Before
     public void setUp() throws Exception {
-        cabInvoice=new CabInvoiceService();
+        cabInvoiceSumary =new CabInvoiceService();
     }
 
     @Test
     public void whengiven_DistanceAndTime_ShouldReturn_TotalFare() {
         double distance=2;
         int time =1;
-        double totalFare=cabInvoice.calculateFare(distance,time);
+        double totalFare= cabInvoiceSumary.calculateFare(distance,time);
         Assert.assertEquals(21,totalFare,0.0);
     }
 
@@ -27,16 +27,28 @@ public class CabInvoiceTest {
     public void whengiven_DistanceAndTime_ShouldReturn_MinimumFare() {
         double distance=0.1;
         int time =1;
-        double totalFare=cabInvoice.calculateFare(distance,time);
+        double totalFare= cabInvoiceSumary.calculateFare(distance,time);
         Assert.assertEquals(5,totalFare,0.0);
     }
 
     @Test
-    public void whengivenMultipleRides_SHouldReturn_Summary() {
+    public void whengiven_MultipleRides_ShouldReturn_Summary() {
         Ride[] ride={ new Ride(2.0,2),
                 new Ride(3,1)
         };
-        CabInvoiceSumary summary=cabInvoice.calculateFare(ride);
+        CabInvoiceSumary summary= cabInvoiceSumary.calculateFare(ride);
+        CabInvoiceSumary exceptedSummary=new CabInvoiceSumary(2,53);
+        Assert.assertEquals(exceptedSummary,summary);
+    }
+
+    @Test
+    public void whengiven_UserAnd_Rides_ShouldReturn_InvoiceSummary() {
+        String userId="abc@.com";
+        Ride[] ride={ new Ride(2.0,2),
+                new Ride(3,1)
+        };
+        cabInvoiceSumary.addRides(userId,ride);
+        CabInvoiceSumary summary=cabInvoiceSumary.getInvoiceSummary(userId);
         CabInvoiceSumary exceptedSummary=new CabInvoiceSumary(2,53);
         Assert.assertEquals(exceptedSummary,summary);
     }
