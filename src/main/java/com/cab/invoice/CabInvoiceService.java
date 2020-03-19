@@ -12,18 +12,8 @@ public class CabInvoiceService {
     }
 
     public double calculateFare(double distance, double time, CabRideType type) {
-        if(type.equals(CabRideType.NORMAL))
-            this.setvalue(10,1,5);
-        else
-            this.setvalue(15,2,20);
-        double total=distance*COST_PER_KILOMETER+time*COST_PER_TIME;
-        return Math.max(total,MINIMUM_FARE);
-    }
-
-    private void setvalue(int kilometerFare, int timeFare, int minimum) {
-        COST_PER_KILOMETER=kilometerFare;
-        COST_PER_TIME=timeFare;
-        MINIMUM_FARE=minimum;
+        double total=distance*type.COST_PER_KILOMETER+time*type.COST_PER_TIME;
+        return Math.max(total,type.MINIMUM_FARE);
     }
 
     public CabInvoiceSumary calculateFare(Ride[] ride) {
