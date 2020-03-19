@@ -2,9 +2,6 @@ package com.cab.invoice;
 
 public class CabInvoiceService {
 
-    public double COST_PER_KILOMETER=10;
-    public double COST_PER_TIME=1;
-    public double MINIMUM_FARE=5;
     private final CabInvoiceRepository cabRepository;
 
     public CabInvoiceService() {

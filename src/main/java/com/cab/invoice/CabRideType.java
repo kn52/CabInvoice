@@ -13,9 +13,4 @@ public enum CabRideType {
         this.COST_PER_TIME = COST_PER_TIME;
         this.MINIMUM_FARE = MINIMUM_FARE;
     }
-
-    public double calculateFare(double distance, double time){
-        double total=distance*COST_PER_KILOMETER+time*COST_PER_TIME;
-        return Math.max(total,MINIMUM_FARE);
-    }
 }
