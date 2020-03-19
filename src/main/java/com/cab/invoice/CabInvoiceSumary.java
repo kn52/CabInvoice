@@ -1,4 +1,4 @@
-package com.cab.invoice.test;
+package com.cab.invoice;
 
 import java.util.Objects;
 
@@ -21,10 +21,5 @@ public class CabInvoiceSumary {
         return Double.compare(that.averageFare, averageFare) == 0 &&
                 Double.compare(that.numberOfRides, numberOfRides) == 0 &&
                 Double.compare(that.totalFare, totalFare) == 0;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(averageFare, numberOfRides, totalFare);
     }
 }
