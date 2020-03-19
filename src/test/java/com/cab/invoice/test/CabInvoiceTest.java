@@ -62,7 +62,18 @@ public class CabInvoiceTest {
         };
         cabInvoiceSummary.addRides(userId,ride);
         CabInvoiceSumary summary= cabInvoiceSummary.getInvoiceSummary(userId);
-        System.out.println(summary.totalFare);
+        CabInvoiceSumary exceptedSummary=new CabInvoiceSumary(2,81);
+        Assert.assertEquals(exceptedSummary,summary);
+    }
+
+    @Test
+    public void whngiven_UserAnd_RideswithPremium_ShouldReturn_InvoiceSummary() {
+        String userId="abc@.com";
+        Ride[] ride={ new Ride(2.0,2, CabRideType.PREMIUM),
+                new Ride(3,1, CabRideType.PREMIUM)
+        };
+        cabInvoiceSummary.addRides(userId,ride);
+        CabInvoiceSumary summary= cabInvoiceSummary.getInvoiceSummary(userId);
         CabInvoiceSumary exceptedSummary=new CabInvoiceSumary(2,81);
         Assert.assertEquals(exceptedSummary,summary);
     }

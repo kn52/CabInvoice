@@ -1,7 +1,5 @@
 package com.cab.invoice;
 
-import java.util.Objects;
-
 public class CabInvoiceSumary {
     public double averageFare;
     public double numberOfRides;
