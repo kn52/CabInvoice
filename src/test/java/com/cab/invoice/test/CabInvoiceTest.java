@@ -2,7 +2,7 @@ package com.cab.invoice.test;
 
 import com.cab.invoice.CabInvoiceService;
 import com.cab.invoice.CabInvoiceSumary;
-import com.cab.invoice.CanRideType;
+import com.cab.invoice.CabRideType;
 import com.cab.invoice.Ride;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,7 +20,7 @@ public class CabInvoiceTest {
     public void whengiven_DistanceAndTime_ShouldReturn_TotalFare() {
         double distance=2;
         int time =1;
-        double totalFare= cabInvoiceSummary.calculateFare(distance,time);
+        double totalFare= cabInvoiceSummary.calculateFare(distance,time, CabRideType.NORMAL);
         Assert.assertEquals(21,totalFare,0.0);
     }
 
@@ -28,14 +28,14 @@ public class CabInvoiceTest {
     public void whengiven_DistanceAndTime_ShouldReturn_MinimumFare() {
         double distance=0.1;
         int time =1;
-        double totalFare= cabInvoiceSummary.calculateFare(distance,time);
+        double totalFare= cabInvoiceSummary.calculateFare(distance,time,CabRideType.NORMAL);
         Assert.assertEquals(5,totalFare,0.0);
     }
 
     @Test
     public void whengiven_MultipleRides_ShouldReturn_Summary() {
-        Ride[] ride={ new Ride(2.0,2, CanRideType.NORMAL),
-                new Ride(3,1, CanRideType.NORMAL)
+        Ride[] ride={ new Ride(2.0,2, CabRideType.NORMAL),
+                new Ride(3,1, CabRideType.NORMAL)
         };
         CabInvoiceSumary summary= cabInvoiceSummary.calculateFare(ride);
         CabInvoiceSumary exceptedSummary=new CabInvoiceSumary(2,53);
@@ -45,8 +45,8 @@ public class CabInvoiceTest {
     @Test
     public void whengiven_UserAnd_Rides_ShouldReturn_InvoiceSummary() {
         String userId="abc@.com";
-        Ride[] ride={ new Ride(2.0,2, CanRideType.NORMAL),
-                new Ride(3,1, CanRideType.NORMAL)
+        Ride[] ride={ new Ride(2.0,2, CabRideType.NORMAL),
+                new Ride(3,1, CabRideType.NORMAL)
         };
         cabInvoiceSummary.addRides(userId,ride);
         CabInvoiceSumary summary= cabInvoiceSummary.getInvoiceSummary(userId);
@@ -57,12 +57,13 @@ public class CabInvoiceTest {
     @Test
     public void whengiven_UserAnd_RideswithPremium_ShouldReturn_InvoiceSummary() {
         String userId="abc@.com";
-        Ride[] ride={ new Ride(2.0,2, CanRideType.PREMIUM),
-                new Ride(3,1, CanRideType.PREMIUM)
+        Ride[] ride={ new Ride(2.0,2, CabRideType.PREMIUM),
+                new Ride(3,1, CabRideType.PREMIUM)
         };
         cabInvoiceSummary.addRides(userId,ride);
         CabInvoiceSumary summary= cabInvoiceSummary.getInvoiceSummary(userId);
-        CabInvoiceSumary exceptedSummary=new CabInvoiceSumary(2,53);
+        System.out.println(summary.totalFare);
+        CabInvoiceSumary exceptedSummary=new CabInvoiceSumary(2,81);
         Assert.assertEquals(exceptedSummary,summary);
     }
 }

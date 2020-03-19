@@ -1,5 +1,5 @@
 package com.cab.invoice;
 
-public enum CanRideType {
+public enum CabRideType {
     NORMAL,PREMIUM
 }
