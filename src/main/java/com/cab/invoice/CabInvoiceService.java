@@ -26,6 +26,7 @@ public class CabInvoiceService {
     }
 
     public CabInvoiceSumary getInvoiceSummary(String userId) {
-        return this.calculateFare(cabRepository.getRides(userId));
+        Ride[] rides=cabRepository.getRides(userId);
+        return this.calculateFare(rides);
     }
 }
